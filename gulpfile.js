@@ -8,7 +8,7 @@ function styles() {
         .pipe(scss())
         .pipe(autoPrefixer('last 5 versions'))
         .pipe(cssMinify())
-        .pipe(dest('./dist/style.css'))
+        .pipe(dest('./dist'))
 }
 
 const jsMinify = require('gulp-terser');
@@ -16,13 +16,13 @@ const jsMinify = require('gulp-terser');
 function scripts() {
     return src('./js/*.js')
         .pipe(jsMinify())
-        .pipe(dest('./dist/index.js'))
+        .pipe(dest('./dist'))
 }
 
 function watchTask() {
     watch(
             [
-            './sass/main.scss',
+            './sass/*.scss',
             './js/*.js'
             ],
             series(styles, scripts)
